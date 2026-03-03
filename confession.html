@@ -8,12 +8,15 @@
 </head>
 <body>
   <main class="center">
+    <div class="intro" role="note">
+      <p class="greet">Hi Sofhia Brielle Galvez — welcome. <span class="hint">(Triple-click the screen to see a secret)</span></p>
+    </div>
     <div class="card" role="dialog" aria-labelledby="confess-title">
       <div class="card-inner">
         <h1 id="confess-title">Can I Court you, Sofhia Brielle Galvez?</h1>
         <p class="subtitle">This is a small, honest question — choose your answer.</p>
         <div class="actions">
-          <button id="cta-btn" class="btn primary">Yes 💖</button>
+          <a id="cta-link" href="https://github.com/Chriiisss03/forYOU" class="btn primary">Yes 💖</a>
           <button id="maybe-btn" class="btn">Maybe</button>
         </div>
         <!-- Local confirmation modal (no external navigation) -->
@@ -24,6 +27,16 @@
             <div class="modal-actions">
               <button id="modal-send" class="btn primary">Send</button>
               <button id="modal-cancel" class="btn">Cancel</button>
+            </div>
+          </div>
+        </div>
+        <!-- Secret overlay (revealed on triple-click anywhere) -->
+        <div class="secret" id="secret-overlay" aria-hidden="true">
+          <div class="secret-dialog" role="dialog" aria-modal="true" aria-labelledby="secret-title">
+            <h2 id="secret-title">A secret for you</h2>
+            <p class="secret-text">Pssst... you make my days brighter. 💫</p>
+            <div class="secret-actions">
+              <button id="secret-close" class="btn">Close</button>
             </div>
           </div>
         </div>
