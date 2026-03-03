@@ -3,19 +3,23 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const mainView = document.getElementById('main-view');
   const splashCta = document.getElementById('splash-cta');
 
+  function enterMainView(event){
+    if(event){
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    if(!splash || !mainView) return;
+    splash.setAttribute('aria-hidden','true');
+    splash.classList.add('hidden');
+    mainView.classList.remove('hidden');
+    const focusTarget = document.getElementById('cta-link') || document.getElementById('cta-btn');
+    if(focusTarget) focusTarget.focus();
+  }
+
   // Hide the splash and reveal main content when user clicks Click Me
   if(splash && splashCta){
-    splashCta.addEventListener('click', (e)=>{
-      e.preventDefault();
-      e.stopPropagation();
-      splash.setAttribute('aria-hidden','true');
-      splash.classList.add('hidden');
-      if(mainView){
-        mainView.classList.remove('hidden');
-      }
-      const focusTarget = document.getElementById('cta-link') || document.getElementById('cta-btn');
-      if(focusTarget) focusTarget.focus();
-    });
+    splashCta.addEventListener('click', enterMainView);
+    splash.addEventListener('click', enterMainView);
   }
   const ctaLink = document.getElementById('cta-link');
   const modal = document.getElementById('confirm-modal');
