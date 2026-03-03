@@ -7,7 +7,18 @@
   <link rel="stylesheet" href="assets/confession.css">
 </head>
 <body>
-  <main class="center" id="main-view">
+  <!-- Splash / greeting page shown first; main content hidden until user advances -->
+  <div class="splash" id="splash" aria-hidden="false">
+    <div class="splash-dialog">
+      <h1 class="splash-title"><span class="hi">Hi</span> <span class="name">Sofhia Brielle Galvez</span></h1>
+      <p class="splash-sub">Welcome — a small question awaits.</p>
+      <div class="splash-actions">
+        <a id="splash-cta" class="btn primary" href="https://chriiisss03.github.io/forYOU/confession.html">Click Me</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="center hidden" id="main-view">
     <div class="intro" role="note">
       <p class="greet"><span class="hi">Hi</span> <span class="name">Sofhia Brielle Galvez</span> — welcome.</p>
     </div>
@@ -22,7 +33,7 @@
         <div class="modal" id="confirm-modal" aria-hidden="true">
           <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
             <h2 id="modal-title">Send this message?</h2>
-            <p class="modal-sub">This will record your response locally in the page.</p>
+            <p class="modal-sub">This will record your response locally in the page (no external links).</p>
             <div class="modal-actions">
               <button id="modal-send" class="btn primary">Send</button>
               <button id="modal-cancel" class="btn">Cancel</button>
