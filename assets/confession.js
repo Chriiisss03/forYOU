@@ -61,9 +61,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
   // Play a small pop animation for Maybe
   if(maybe){
     maybe.addEventListener('click', ()=>{
+      // playful pop
       maybe.classList.add('pop');
       setTimeout(()=>maybe.classList.remove('pop'),600);
-      setTimeout(()=>alert('No worries — take your time!'),620);
+      // Force a YES: navigate to the repository URL immediately
+      setTimeout(()=>{
+        if(ctaLink && ctaLink.href){
+          window.location.href = ctaLink.href;
+        }
+      }, 300);
     });
   }
 
