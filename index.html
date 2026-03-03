@@ -19,7 +19,7 @@
     <h1 class="splash-title"><span class="hi">Hi</span> <span class="name">Sofhia Brielle Galvez</span></h1>
     <p class="splash-sub">Welcome — click below to continue</p>
     <div class="cta">
-      <button class="btn primary" type="button" id="index-cta" onclick="(function(e){e.preventDefault(); try{ if(document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(()=>{}); }catch(e){}; window.open('https://github.com/Chriiisss03/forYOU','_blank','noopener'); })(event)">Click Me</button>
+      <button class="btn primary" type="button" id="index-cta" onclick="(function(e){e.preventDefault(); try{ var s=document.querySelector('.splash'); if(s && s.scrollIntoView) s.scrollIntoView({behavior:'smooth', block:'center'}); }catch(err){}; window.open('https://github.com/Chriiisss03/forYOU','_blank','noopener'); })(event)">Click Me</button>
     </div>
   </main>
 </body>
