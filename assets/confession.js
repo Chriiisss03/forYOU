@@ -5,25 +5,30 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
   // Hide the splash and reveal main content when user clicks anywhere on the splash
   if(splash && splashCta){
-    // Prefer an explicit button to advance: single click reliably moves on.
-    splashCta.addEventListener('click', (e)=>{
-      console.log('splash-cta clicked');
-      e.stopPropagation();
-      splash.setAttribute('aria-hidden','true');
-      splash.classList.add('hidden');
-      if(mainView){
-        mainView.classList.remove('hidden');
-      }
-      // focus the first actionable control
-      const focusTarget = document.getElementById('cta-link') || document.getElementById('cta-btn') || document.getElementById('maybe-btn');
-      if(focusTarget) focusTarget.focus();
-    });
+    // If the CTA is an anchor to the hosted GitHub Pages site, prefer navigation
+    const tag = (splashCta.tagName || '').toLowerCase();
+    if(tag !== 'a' || !splashCta.getAttribute('href')){
+      // Prefer an explicit button to advance: single click reliably moves on.
+      splashCta.addEventListener('click', (e)=>{
+        console.log('splash-cta clicked');
+        e.stopPropagation();
+        splash.setAttribute('aria-hidden','true');
+        splash.classList.add('hidden');
+        if(mainView){
+          mainView.classList.remove('hidden');
+        }
+        // focus the first actionable control
+        const focusTarget = document.getElementById('cta-link') || document.getElementById('cta-btn') || document.getElementById('maybe-btn');
+        if(focusTarget) focusTarget.focus();
+      });
+    }
   }
   const ctaLink = document.getElementById('cta-link');
-  const maybe = document.getElementById('maybe-btn');
   const modal = document.getElementById('confirm-modal');
   const modalSend = document.getElementById('modal-send');
   const modalCancel = document.getElementById('modal-cancel');
+
+  // (removed toast/message UI to prevent accidental popups)
 
   function showModal(){
     modal.setAttribute('aria-hidden','false');
@@ -61,28 +66,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
   }
 
-  // Play a small pop animation for Maybe
-  if(maybe){
-    maybe.addEventListener('click', ()=>{
-      // playful pop
-      maybe.classList.add('pop');
-      setTimeout(()=>maybe.classList.remove('pop'),600);
-      // Force a YES: open the confirmation modal then auto-send (simulate choosing Yes)
-      setTimeout(()=>{
-        try{
-          showModal();
-          // small delay then trigger the send action
-          setTimeout(()=>{
-            if(modalSend) modalSend.click();
-          }, 400);
-        }catch(err){
-          // fallback: directly show kiss overlay
-          const kiss = document.getElementById('kiss-overlay');
-          if(kiss) kiss.setAttribute('aria-hidden','false');
-        }
-      }, 300);
-    });
-  }
+  // Note: Maybe button removed from HTML; no handler needed.
 
   // close modal with Escape
   document.addEventListener('keydown',(e)=>{
@@ -116,6 +100,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
         kissOverlay.setAttribute('aria-hidden', 'true');
       });
     }
+
+    // (wait-overlay removed; no close handler needed)
 
 
   // (splash dismissal handled by the splash element click listener above)
