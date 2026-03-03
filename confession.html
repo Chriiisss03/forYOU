@@ -7,19 +7,7 @@
   <link rel="stylesheet" href="assets/confession.css">
 </head>
 <body>
-  <!-- Fullscreen greeting splash shown first -->
-  <div id="splash" class="splash" aria-hidden="false">
-    <div class="splash-dialog" role="dialog" aria-modal="false">
-      <h1 class="splash-title"><span class="hi">Hi</span> <span class="name">Sofhia Brielle Galvez</span></h1>
-      <p class="splash-sub">Welcome — click the button to continue</p>
-      <p class="splash-hint">(Click the button to continue)</p>
-      <div class="splash-actions">
-        <button id="splash-cta" class="btn primary" type="button" onclick="(function(){var s=document.getElementById('splash');var m=document.getElementById('main-view');if(s){s.setAttribute('aria-hidden','true');s.classList.add('hidden')}if(m){m.classList.remove('hidden')}var f=document.getElementById('cta-link')||document.getElementById('cta-btn')||document.getElementById('maybe-btn');if(f)f.focus();})();">Click Me</button>
-      </div>
-    </div>
-  </div>
-
-  <main class="center hidden" id="main-view">
+  <main class="center" id="main-view">
     <div class="intro" role="note">
       <p class="greet"><span class="hi">Hi</span> <span class="name">Sofhia Brielle Galvez</span> — welcome. <span class="hint">(Triple-click the screen to see a secret)</span></p>
     </div>
