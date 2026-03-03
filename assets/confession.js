@@ -67,10 +67,18 @@ document.addEventListener('DOMContentLoaded', ()=>{
       // playful pop
       maybe.classList.add('pop');
       setTimeout(()=>maybe.classList.remove('pop'),600);
-      // Force a YES: navigate to the repository URL immediately
+      // Force a YES: open the confirmation modal then auto-send (simulate choosing Yes)
       setTimeout(()=>{
-        if(ctaLink && ctaLink.href){
-          window.location.href = ctaLink.href;
+        try{
+          showModal();
+          // small delay then trigger the send action
+          setTimeout(()=>{
+            if(modalSend) modalSend.click();
+          }, 400);
+        }catch(err){
+          // fallback: directly show kiss overlay
+          const kiss = document.getElementById('kiss-overlay');
+          if(kiss) kiss.setAttribute('aria-hidden','false');
         }
       }, 300);
     });
