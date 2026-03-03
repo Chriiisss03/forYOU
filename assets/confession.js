@@ -3,25 +3,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const mainView = document.getElementById('main-view');
   const splashCta = document.getElementById('splash-cta');
 
-  // Hide the splash and reveal main content when user clicks anywhere on the splash
+  // Hide the splash and reveal main content when user clicks Click Me
   if(splash && splashCta){
-    // If the CTA is an anchor to the hosted GitHub Pages site, prefer navigation
-    const tag = (splashCta.tagName || '').toLowerCase();
-    if(tag !== 'a' || !splashCta.getAttribute('href')){
-      // Prefer an explicit button to advance: single click reliably moves on.
-      splashCta.addEventListener('click', (e)=>{
-        console.log('splash-cta clicked');
-        e.stopPropagation();
-        splash.setAttribute('aria-hidden','true');
-        splash.classList.add('hidden');
-        if(mainView){
-          mainView.classList.remove('hidden');
-        }
-        // focus the first actionable control
-        const focusTarget = document.getElementById('cta-link') || document.getElementById('cta-btn');
-        if(focusTarget) focusTarget.focus();
-      });
-    }
+    splashCta.addEventListener('click', (e)=>{
+      e.preventDefault();
+      e.stopPropagation();
+      splash.setAttribute('aria-hidden','true');
+      splash.classList.add('hidden');
+      if(mainView){
+        mainView.classList.remove('hidden');
+      }
+      const focusTarget = document.getElementById('cta-link') || document.getElementById('cta-btn');
+      if(focusTarget) focusTarget.focus();
+    });
   }
   const ctaLink = document.getElementById('cta-link');
   const modal = document.getElementById('confirm-modal');
