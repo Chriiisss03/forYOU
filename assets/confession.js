@@ -1,10 +1,13 @@
 document.addEventListener('DOMContentLoaded', ()=>{
   const splash = document.getElementById('splash');
   const mainView = document.getElementById('main-view');
+  const splashCta = document.getElementById('splash-cta');
 
   // Hide the splash and reveal main content when user clicks anywhere on the splash
-  if(splash){
-    splash.addEventListener('click', ()=>{
+  if(splash && splashCta){
+    // Prefer an explicit button to advance: single click reliably moves on.
+    splashCta.addEventListener('click', (e)=>{
+      e.stopPropagation();
       splash.setAttribute('aria-hidden','true');
       splash.classList.add('hidden');
       if(mainView){
