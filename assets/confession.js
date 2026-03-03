@@ -1,4 +1,20 @@
 document.addEventListener('DOMContentLoaded', ()=>{
+  const splash = document.getElementById('splash');
+  const mainView = document.getElementById('main-view');
+
+  // Hide the splash and reveal main content when user clicks anywhere on the splash
+  if(splash){
+    splash.addEventListener('click', ()=>{
+      splash.setAttribute('aria-hidden','true');
+      splash.classList.add('hidden');
+      if(mainView){
+        mainView.classList.remove('hidden');
+      }
+      // focus the first actionable control
+      const focusTarget = document.getElementById('cta-link') || document.getElementById('cta-btn') || document.getElementById('maybe-btn');
+      if(focusTarget) focusTarget.focus();
+    });
+  }
   const ctaLink = document.getElementById('cta-link');
   const maybe = document.getElementById('maybe-btn');
   const modal = document.getElementById('confirm-modal');
@@ -49,7 +65,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
   });
   
-  // Triple-click detection (anywhere on the page)
+  // Triple-click detection (anywhere on the page) — only active after splash hidden
   let clickCount = 0;
   let clickTimer = null;
   const secret = document.getElementById('secret-overlay');
@@ -66,6 +82,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 
   document.addEventListener('click',(e)=>{
+    // only consider clicks if splash is hidden
+    if(splash && splash.getAttribute('aria-hidden') === 'false') return;
     // ignore clicks on modal buttons to avoid accidental reveal
     const tag = e.target.tagName.toLowerCase();
     if(tag === 'button' || tag === 'a') return;
