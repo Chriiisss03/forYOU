@@ -51,9 +51,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
   if(modalSend){
     modalSend.addEventListener('click', ()=>{
       hideModal();
-      // navigate to the repository URL (only GitHub link for this project)
-      if(ctaLink && ctaLink.href){
-        window.location.href = ctaLink.href;
+      // show kiss overlay with message instead of navigating away
+      const kiss = document.getElementById('kiss-overlay');
+      if(kiss){
+        kiss.setAttribute('aria-hidden','false');
+        const kissClose = document.getElementById('kiss-close');
+        if(kissClose) kissClose.focus();
       }
     });
   }
@@ -92,10 +95,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
     secret.setAttribute('aria-hidden','false');
     secretClose.focus();
   }
-  function hideSecret(){
-    if(!secret) return;
-    secret.setAttribute('aria-hidden','true');
-  }
+    function hideSecret() {
+      if (!secret) return;
+      secret.setAttribute('aria-hidden', 'true');
+    }
+
+    // Kiss overlay close handling
+    const kissOverlay = document.getElementById('kiss-overlay');
+    const kissCloseBtn = document.getElementById('kiss-close');
+    if (kissCloseBtn && kissOverlay) {
+      kissCloseBtn.addEventListener('click', () => {
+        kissOverlay.setAttribute('aria-hidden', 'true');
+      });
+    }
 
 
   // (splash dismissal handled by the splash element click listener above)
