@@ -91,33 +91,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     secret.setAttribute('aria-hidden','true');
   }
 
-  document.addEventListener('click',(e)=>{
-    // only consider clicks if splash is hidden
-    if(splash && splash.getAttribute('aria-hidden') === 'false') return;
-    // ignore clicks on modal buttons to avoid accidental reveal
-    const tag = e.target.tagName.toLowerCase();
-    if(tag === 'button' || tag === 'a') return;
-    clickCount++;
-    clearTimeout(clickTimer);
-    clickTimer = setTimeout(()=>{ clickCount = 0; }, 700);
-    if(clickCount >= 3){
-      clickCount = 0;
-      showSecret();
-    }
-  });
 
   // (splash dismissal handled by the splash element click listener above)
 
-  // close secret
-  if(secretClose){
-    secretClose.addEventListener('click', ()=>{
-      hideSecret();
-    });
-  }
-  // close secret with Escape
-  document.addEventListener('keydown',(e)=>{
-    if(e.key === 'Escape' && secret && secret.getAttribute('aria-hidden') === 'false'){
-      hideSecret();
-    }
-  });
+    // (triple-click secret removed) — simplified event handling
 });

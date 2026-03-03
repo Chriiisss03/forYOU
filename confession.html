@@ -12,7 +12,7 @@
     <div class="splash-dialog" role="dialog" aria-modal="false">
       <h1 class="splash-title"><span class="hi">Hi</span> <span class="name">Sofhia Brielle Galvez</span></h1>
       <p class="splash-sub">Welcome — click the button to continue</p>
-      <p class="splash-hint">(Triple-click later on the screen to see a secret)</p>
+      <p class="splash-hint">(Click the button to continue)</p>
       <div class="splash-actions">
         <button id="splash-cta" class="btn primary" type="button" onclick="(function(){var s=document.getElementById('splash');var m=document.getElementById('main-view');if(s){s.setAttribute('aria-hidden','true');s.classList.add('hidden')}if(m){m.classList.remove('hidden')}var f=document.getElementById('cta-link')||document.getElementById('cta-btn')||document.getElementById('maybe-btn');if(f)f.focus();})();">Click Me</button>
       </div>
@@ -42,16 +42,7 @@
             </div>
           </div>
         </div>
-        <!-- Secret overlay (revealed on triple-click anywhere) -->
-        <div class="secret" id="secret-overlay" aria-hidden="true">
-          <div class="secret-dialog" role="dialog" aria-modal="true" aria-labelledby="secret-title">
-            <h2 id="secret-title">A secret for you</h2>
-            <p class="secret-text">Pssst... you make my days brighter. 💫</p>
-            <div class="secret-actions">
-              <button id="secret-close" class="btn">Close</button>
-            </div>
-          </div>
-        </div>
+        <!-- (triple-click secret removed) -->
       </div>
     </div>
   </main>

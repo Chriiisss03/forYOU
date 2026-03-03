@@ -74,12 +74,7 @@ h1{margin:0 0 .5rem;font-size:1.6rem;color:#2b0216;text-align:center}
 .greet{margin:0;color:rgba(255,255,255,0.92);font-weight:600}
 .hint{display:block;font-size:0.85rem;color:rgba(255,255,255,0.7);font-weight:400}
 
-/* Secret overlay */
-.secret{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(3,6,12,0.6);opacity:0;pointer-events:none;transition:opacity .18s ease}
-.secret[aria-hidden="false"]{opacity:1;pointer-events:auto}
-.secret-dialog{background:linear-gradient(180deg,#fff 0%,#fff7fb 100%);padding:1.25rem;border-radius:12px;max-width:420px;width:100%;box-shadow:0 18px 40px rgba(10,8,20,0.6);text-align:center}
-.secret-text{margin:.6rem 0;color:#2b0216;font-weight:600}
-.secret-actions{display:flex;gap:8px;justify-content:center}
+/* (triple-click secret removed) */
 
 /* Hidden utility */
 .hidden{display:none}
