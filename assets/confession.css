@@ -94,3 +94,6 @@ h1{margin:0 0 .5rem;font-size:1.6rem;color:#2b0216;text-align:center}
 
 /* Name highlight */
 .name{color:#ff4d6d}
+
+/* Hi highlight */
+.hi{color:#ff4d6d;font-weight:700}
