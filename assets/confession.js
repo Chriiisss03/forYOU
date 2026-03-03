@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   if(splash && splashCta){
     // Prefer an explicit button to advance: single click reliably moves on.
     splashCta.addEventListener('click', (e)=>{
+      console.log('splash-cta clicked');
       e.stopPropagation();
       splash.setAttribute('aria-hidden','true');
       splash.classList.add('hidden');
@@ -40,25 +41,31 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
   }
 
-  modalCancel.addEventListener('click', ()=>{
-    hideModal();
-    if(ctaLink) ctaLink.focus();
-  });
+  if(modalCancel){
+    modalCancel.addEventListener('click', ()=>{
+      hideModal();
+      if(ctaLink) ctaLink.focus();
+    });
+  }
 
-  modalSend.addEventListener('click', ()=>{
-    hideModal();
-    // navigate to the repository URL (only GitHub link for this project)
-    if(ctaLink && ctaLink.href){
-      window.location.href = ctaLink.href;
-    }
-  });
+  if(modalSend){
+    modalSend.addEventListener('click', ()=>{
+      hideModal();
+      // navigate to the repository URL (only GitHub link for this project)
+      if(ctaLink && ctaLink.href){
+        window.location.href = ctaLink.href;
+      }
+    });
+  }
 
   // Play a small pop animation for Maybe
-  maybe.addEventListener('click', ()=>{
-    maybe.classList.add('pop');
-    setTimeout(()=>maybe.classList.remove('pop'),600);
-    setTimeout(()=>alert('No worries — take your time!'),620);
-  });
+  if(maybe){
+    maybe.addEventListener('click', ()=>{
+      maybe.classList.add('pop');
+      setTimeout(()=>maybe.classList.remove('pop'),600);
+      setTimeout(()=>alert('No worries — take your time!'),620);
+    });
+  }
 
   // close modal with Escape
   document.addEventListener('keydown',(e)=>{
