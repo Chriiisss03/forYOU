@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
           mainView.classList.remove('hidden');
         }
         // focus the first actionable control
-        const focusTarget = document.getElementById('cta-link') || document.getElementById('cta-btn') || document.getElementById('maybe-btn');
+        const focusTarget = document.getElementById('cta-link') || document.getElementById('cta-btn');
         if(focusTarget) focusTarget.focus();
       });
     }
@@ -65,8 +65,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
       }
     });
   }
-
-  // Note: Maybe button removed from HTML; no handler needed.
 
   // close modal with Escape
   document.addEventListener('keydown',(e)=>{
