@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
   modalCancel.addEventListener('click', ()=>{
     hideModal();
-    ctaBtn.focus();
+    if(ctaLink) ctaLink.focus();
   });
 
   modalSend.addEventListener('click', ()=>{
@@ -95,6 +95,21 @@ document.addEventListener('DOMContentLoaded', ()=>{
       showSecret();
     }
   });
+
+  // Robust splash dismissal: also listen on document and close splash on any click while visible
+  if(splash){
+    document.addEventListener('click', function _splashDismiss(ev){
+      if(splash.getAttribute('aria-hidden') === 'false'){
+        splash.setAttribute('aria-hidden','true');
+        splash.classList.add('hidden');
+        if(mainView) mainView.classList.remove('hidden');
+        const focusTarget = document.getElementById('cta-link') || document.getElementById('cta-btn') || document.getElementById('maybe-btn');
+        if(focusTarget) focusTarget.focus();
+        // remove this one-time handler
+        document.removeEventListener('click', _splashDismiss);
+      }
+    }, {capture: true});
+  }
 
   // close secret
   if(secretClose){
